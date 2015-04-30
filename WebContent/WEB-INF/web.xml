@@ -32,14 +32,23 @@
 		<servlet-name>showOptionServlet</servlet-name>
 		<servlet-class>myservlets.showOptionServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>TestAppServlet</servlet-name>
 		<servlet-class>com.anan.anancooking.server.servlet.TestAppServlet</servlet-class>
-	</servlet>	
-	
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>TestAppServlet</servlet-name>
 		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FetchRecipeServlet</servlet-name>
+		<servlet-class>com.anan.anancooking.server.servlet.FetchRecipeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FetchRecipeServlet</servlet-name>
+		<url-pattern>/fetch_recipe</url-pattern>
 	</servlet-mapping>
 </web-app>
