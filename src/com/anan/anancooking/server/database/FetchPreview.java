@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface FetchPreview {
     public List<RecipePreviewImplementation> searchForPreview(List<String> ingredients);
-
+    
+    public List<RecipePreviewImplementation> recommendPreview();
 }

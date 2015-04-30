@@ -8,6 +8,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/Users/kuoxin/StudyStudy/CMUStudy/18641_Java_Phone/FinalProject641/AnAnCooking_backend/libs/servlet-api.jar"/>
+=======
+	<classpathentry kind="lib" path="/Users/zhouyangdi/Downloads/Tomcat/lib/servlet-api.jar"/>
+>>>>>>> 32644bfd86eeba3c3e76c982066bdd221ad34b27
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
