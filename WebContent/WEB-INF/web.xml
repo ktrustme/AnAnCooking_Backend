@@ -35,7 +35,7 @@
 	
 	<servlet>
 		<servlet-name>TestAppServlet</servlet-name>
-		<servlet-class>com.anan.anancooking.ser.servlet.TestAppServlet</servlet-class>
+		<servlet-class>com.anan.anancooking.server.servlet.TestAppServlet</servlet-class>
 	</servlet>	
 	
 	<servlet-mapping>
