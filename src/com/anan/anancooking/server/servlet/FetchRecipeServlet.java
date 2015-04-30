@@ -65,9 +65,12 @@ public class FetchRecipeServlet extends HttpServlet {
 		List<String> ingredients = new ArrayList<String>();
 		ingredients.add("Cabbage");ingredients.add("Pork");
 		String imageName="/image.jpg";
+		/*
 		System.out.println(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
+		*/
+		
 		out.print(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
@@ -81,9 +84,11 @@ public class FetchRecipeServlet extends HttpServlet {
 
 		byte[] imageInByte=null;
 		try {
-			bufferedImage = ImageIO.read(input);
+			bufferedImage = ImageIO.read(input
+					);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write( bufferedImage, "jpg", baos );
+		
 			baos.flush();
 			imageInByte = baos.toByteArray();
 			baos.close();
