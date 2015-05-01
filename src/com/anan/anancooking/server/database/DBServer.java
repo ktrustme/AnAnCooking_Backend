@@ -5,7 +5,9 @@ package com.anan.anancooking.server.database;
  */
 import java.util.List;
 
+import com.anan.anancooking.model.RecipeImplementation;
+import com.anan.anancooking.model.RecipePreviewImplementation;
+
 public class DBServer  extends AbstractDBProxy implements InsertDB, FetchPreview, FetchStep{
 
-
-    }
+}

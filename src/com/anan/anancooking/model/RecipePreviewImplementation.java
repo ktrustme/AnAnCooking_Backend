@@ -17,6 +17,14 @@ public class RecipePreviewImplementation implements RecipePreviewInterface {
     String cook = null;
     byte[] previewByteCode = null;
 
+    public String getRecipeID(){
+    	return recipeID;
+    }
+    public void setRecipeID(String recipeID){
+    	this.recipeID=recipeID;
+    }
+    
+    
     public RecipePreviewImplementation(){
     	super();
     }

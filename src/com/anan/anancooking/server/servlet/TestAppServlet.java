@@ -44,7 +44,10 @@ public class TestAppServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		String title = "Auto Refresh Header Setting";
-		out.println("OK...Now I think it works, and the id is: "+id);
+		//out.println("OK...Now I think it works, and the id is: "+id);
+		System.out.println("And the id is: " + id);
+
+		out.println("{ key1: 'value1', key2: 'value2' }");
 		//String host = getServletContext().getInitParameter("serverHost");
 		//int port = Integer.valueOf(getServletContext().getInitParameter("serverPort"));
 		/*
@@ -59,10 +62,7 @@ public class TestAppServlet extends HttpServlet {
     	ArrayList<ArrayList<String>> listSet = null;
     	request.setAttribute("basePrice","" + auto.getBasePrice());
     	listSet = auto.returnOptionList();
-
-
         request.setAttribute("listSet", listSet);
-
     	session.setAttribute("listSet", listSet);
 		 */
 		/*
@@ -72,5 +72,5 @@ public class TestAppServlet extends HttpServlet {
 			}
 		 */ 
 
-			}
+		}
 }

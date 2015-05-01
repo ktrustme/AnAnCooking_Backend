@@ -14,7 +14,10 @@ public class StepImplementation implements StepInterface {
         setDescription(description);
         setImageByteCode(imageByteCode);
     }
-    @Override
+    public StepImplementation() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
     public void setName(String name) {
         this.name = name;
     }

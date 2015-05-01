@@ -12,10 +12,11 @@ public class RecipeImplementation implements RecipeInterface {
     int time = 0;
     String description = null;
     String cook = null;
+    String name = null;
     ArrayList<Step> steps = new ArrayList<Step>();
     byte[] previewByteCode;
 
-
+    
 
 
     @Override
@@ -83,6 +84,18 @@ public class RecipeImplementation implements RecipeInterface {
         this.cook = cook;
         return this;
     }
+
+	@Override
+	public String getName() {
+		return this.name;
+		
+	}
+
+	@Override
+	public RecipeInterface setName(String name) {
+		this.name = name;
+		return this;
+	}
 
 }
 

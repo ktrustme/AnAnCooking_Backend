@@ -45,16 +45,19 @@ public class RecipeIDGenerater {
 			stmt.executeQuery(sql);
 
 			String sql2 = "SELECT MAX(recipe_id) AS current from " + DatabaseMacros.RECIPE_OVERVIEW;
+			
 			ResultSet rs = stmt.executeQuery(sql2);
 
+			
 			if (rs.next())
 			{
 				current = rs.getString(1);
 				if(current == null)
 					throw new ServerException(ExceptionEnum.NO_ID_INITIALIZED);
 			}
-
-
+			if(current==null){
+				current = "0000";
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
