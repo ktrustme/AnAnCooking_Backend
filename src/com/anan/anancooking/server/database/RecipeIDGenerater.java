@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.HashSet;
 
 import com.anan.anancooking.model.Step;
+import com.anan.anancooking.server.exception.ExceptionEnum;
+import com.anan.anancooking.server.exception.ServerException;
 
 /**
  * Created by zhouyangdi on 4/29/15.
@@ -13,13 +15,22 @@ public class RecipeIDGenerater {
 
     public static String createID() {
         String id;
-        id = "" + (Integer.parseInt(currentID()) + 1);
-        return id;
+        try {
+			id = "" + (Integer.parseInt(currentID()) + 1);
+			 return id;
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return "1000";
+		} catch (ServerException e) {
+			e.printStackTrace();
+			return "1000";
+		}
+       
     }
     
     
     /* helper functions for manipulating database */
-    private static String currentID() {
+    private static String currentID() throws ServerException{
     	String current = null;
     	Connection conn = null;
     	Statement stmt = null;
@@ -39,6 +50,8 @@ public class RecipeIDGenerater {
 			if (rs.next())
 			{
 				current = rs.getString(1);
+				if(current == null)
+					throw new ServerException(ExceptionEnum.NO_ID_INITIALIZED);
 			}
 
 

@@ -119,7 +119,8 @@ public abstract class AbstractDBProxy {
 			System.out.println("fetching image");
 			/* fetch image */
 			byte[] fileBytes;
-
+			if (!rs.next())
+			
 			while (rs.next())
 			{
 				Class.forName(DatabaseMacros.JDBC_DRIVER);
