@@ -10,6 +10,9 @@ import com.anan.anancooking.model.Step;
 
 
 
+import com.anan.anancooking.server.exception.ExceptionEnum;
+import com.anan.anancooking.server.exception.ServerException;
+
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.sql.*;
@@ -43,9 +46,11 @@ public abstract class AbstractDBProxy {
 
 
 			/* add to recipe_overview table */
+ 
 
-
-			byte[] bytes = new byte[DatabaseMacros.MAX_IMAGE];
+			byte[] bytes = recipe.getPreviewByteCode();
+			if(bytes.length > DatabaseMacros.MAX_IMAGE)
+				throw new ServerException(ExceptionEnum.IMAGE_OVERSIZE);
 			String query = ("INSERT INTO " + DatabaseMacros.RECIPE_OVERVIEW + " VALUES(?,?,?,?,?)");
 
 			PreparedStatement pstmt = conn.prepareStatement(query);
@@ -74,6 +79,10 @@ public abstract class AbstractDBProxy {
 			}
 
 			/* add to search table */
+			if(recipe.getIngredients() == null)
+				new ServerException(ExceptionEnum.NO_INGREDIENTS);
+			
+			
 			for (int i = 0; i < recipe.getIngredients().size(); i ++) {
 
 
@@ -134,7 +143,7 @@ public abstract class AbstractDBProxy {
 			/* fetch image */
 			byte[] fileBytes;
 			if (!rs.next())
-			
+				throw new ServerException(ExceptionEnum.NO_RECORD_IN_TABLE);
 			while (rs.next())
 			{
 
