@@ -4,7 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/zhouyangdi/Downloads/Tomcat/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="/Users/zhouyangdi/Documents/study/CMU/15Spring/18-641/assignment/JBDCTest/lib/mysql-connector-java-5.1.34-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/kuoxin/StudyStudy/CMUStudy/18641_Java_Phone/FinalProject641/Backend/AnAnCooking_backend/libs/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/Users/kuoxin/StudyStudy/CMUStudy/18641_Java_Phone/FinalProject641/Backend/AnAnCooking_backend/libs/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.anan.anancooking.model.RecipeImplementation;
+import com.anan.anancooking.server.database.DBServer;
 import com.google.gson.Gson;
 
 
@@ -71,6 +72,8 @@ public class FetchRecipeServlet extends HttpServlet {
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
 		*/
 		
+		DBServer dbServer = new DBServer();
+		//dbServer.
 		out.print(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
