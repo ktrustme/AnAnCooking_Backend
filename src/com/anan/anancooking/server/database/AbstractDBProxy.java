@@ -54,7 +54,7 @@ public abstract class AbstractDBProxy {
 			pstmt.setString(2, recipe.getDescription());
 			pstmt.setInt(3, recipe.getTime());
 			pstmt.setString(4, recipe.getCook());
-			// Method used to insert a stream of bytes
+			//Method used to insert a stream of bytes
 			pstmt.setBytes(5, bytes);
 			pstmt.executeUpdate();
 

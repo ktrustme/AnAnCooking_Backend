@@ -6,13 +6,16 @@ import java.util.*;
  * Created by zhouyangdi on 4/29/15.
  */
 public interface RecipeInterface {
-    ArrayList<Step> getSteps();
+    
+	ArrayList<Step> getSteps();
     List<String> getIngredients();
     int getTime();
     String getDescription();
     byte[] getPreviewByteCode();
     String getCook();
-
+    String getName();
+    
+    RecipeInterface setName(String name);
     RecipeInterface setTime(int time);
     RecipeInterface setIngredients(List<String> ingredients);
     RecipeInterface setDescription(String description);
