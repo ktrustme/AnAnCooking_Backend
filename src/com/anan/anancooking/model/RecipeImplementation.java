@@ -7,7 +7,7 @@ import java.util.*;
 
 
 public class RecipeImplementation implements RecipeInterface {
-
+	String recipeID = null;
     List<String> ingredients = null;
     int time = 0;
     String description = null;
@@ -20,7 +20,7 @@ public class RecipeImplementation implements RecipeInterface {
 
 
     @Override
-    public RecipeInterface setSteps(ArrayList<Step> steps) {
+    public RecipeInterface setSteps(List<Step> list) {
         return null;
     }
 
@@ -96,6 +96,16 @@ public class RecipeImplementation implements RecipeInterface {
 		this.name = name;
 		return this;
 	}
+	
+	public String getRecipeID() {
+		return this.recipeID;
+	}
+	
+	public void setRecipeID(String recipeID) {
+		this.recipeID = recipeID;
+	}
+
+
 
 }
 

@@ -20,6 +20,6 @@ public interface RecipeInterface {
     RecipeInterface setIngredients(List<String> ingredients);
     RecipeInterface setDescription(String description);
     RecipeInterface setPreviewByteCode(byte[] previewByteCode);
-    RecipeInterface setSteps(ArrayList<Step> steps);
+    RecipeInterface setSteps(List<Step> steps);
     RecipeInterface setCook(String cook);
 }

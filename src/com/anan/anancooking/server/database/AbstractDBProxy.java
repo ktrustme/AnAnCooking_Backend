@@ -338,7 +338,81 @@ public abstract class AbstractDBProxy {
 	}
 
 
+	public RecipeImplementation fetchRecipe(String recipeID) {
 
+		RecipeImplementation recipe = new RecipeImplementation();
+		
+		try{
+			Class.forName(DatabaseMacros.JDBC_DRIVER);
+			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
+					DatabaseMacros.USER, DatabaseMacros.PASS);
+			stmt = conn.createStatement();
+
+			// use databases;
+			String sql = "use " + DatabaseMacros.DATABASE;
+			stmt.executeQuery(sql);
+
+			String sql2 = "SELECT * FROM " + DatabaseMacros.RECIPE_OVERVIEW + " WHERE recipe_id = '" + recipeID + "'";
+			
+			ResultSet rs = stmt.executeQuery(sql2);
+			byte[] fileBytes;
+
+			if (rs.next())
+			{
+				Class.forName(DatabaseMacros.JDBC_DRIVER);
+				Connection conn2 = DriverManager.getConnection(DatabaseMacros.DB_URL, 
+						DatabaseMacros.USER, DatabaseMacros.PASS);;
+						Statement stmt2 = conn2.createStatement();
+
+						stmt2.executeQuery(sql);
+						recipe.setRecipeID(recipeID);
+						recipe.setName(rs.getString(2));
+						recipe.setTime(rs.getInt(3));
+						recipe.setCook(rs.getString(4));
+						recipe.setPreviewByteCode(rs.getBytes(5));
+
+
+
+
+						/* fetch all the ingredients */
+						String sql3 = "SELECT ingredient FROM " + DatabaseMacros.SEARCH + " WHERE recipe_id = '" + recipeID + "'";
+						ResultSet rs2 = stmt2.executeQuery(sql3);
+						StringBuilder in = new StringBuilder();
+
+						while (rs2.next()) {
+							in.append(rs2.getString(1));
+							System.out.println(rs2.getString(1));
+							in.append(", ");
+						}
+						System.out.println("ingredients = " + in.toString());
+
+			}
+			
+			recipe.setSteps(this.getSteps(recipeID));
+
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		finally{
+			try{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(SQLException se2){
+			}
+			try{
+				if(conn != null)
+					conn.close();
+			}
+			catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		return recipe;
+	}
 
 
 }
