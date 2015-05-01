@@ -64,18 +64,19 @@ public abstract class AbstractDBProxy {
 			pstmt.executeUpdate();
 
 
-
+			
 			/* add to step table */
 			for (int i = 0; i < recipe.getSteps().size(); i ++) {
 				Step step = recipe.getSteps().get(i);
-
+				
 				String query2 = ("INSERT INTO " + DatabaseMacros.STEP + " VALUES(?,?,?,?)");
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
 				pstmt2.setString(1, recipeID);
 				pstmt2.setInt(2, i);
 				pstmt2.setString(3, step.getDes());
 				pstmt2.setBytes(4, step.getBytes());
-				pstmt2.executeUpdate(query2);
+				System.out.println("Hahaha");
+				pstmt2.executeUpdate();
 			}
 
 			/* add to search table */

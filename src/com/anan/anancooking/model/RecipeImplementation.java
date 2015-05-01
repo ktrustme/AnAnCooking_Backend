@@ -13,7 +13,7 @@ public class RecipeImplementation implements RecipeInterface {
     String description = null;
     String cook = null;
     String name = null;
-    ArrayList<Step> steps = new ArrayList<Step>();
+    List<Step> steps = new ArrayList<Step>();
     byte[] previewByteCode;
 
     
@@ -21,6 +21,7 @@ public class RecipeImplementation implements RecipeInterface {
 
     @Override
     public RecipeInterface setSteps(List<Step> list) {
+    	this.steps = list;
         return null;
     }
 
@@ -50,7 +51,7 @@ public class RecipeImplementation implements RecipeInterface {
     }
 
     @Override
-    public java.util.ArrayList<Step> getSteps() {
+    public List<Step> getSteps() {
         return this.steps;
     }
 

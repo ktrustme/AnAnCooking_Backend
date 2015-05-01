@@ -7,7 +7,7 @@ import java.util.*;
  */
 public interface RecipeInterface {
     
-	ArrayList<Step> getSteps();
+	List<Step> getSteps();
     List<String> getIngredients();
     int getTime();
     String getDescription();

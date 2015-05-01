@@ -28,7 +28,8 @@ public class RecipeLoader {
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
 		for(int i = 0; i < listOfFiles.length; i ++){
-			resultRecipes.add(recipeFileConverter(listOfFiles[i]));
+			if(listOfFiles[i].isDirectory())
+				resultRecipes.add(recipeFileConverter(listOfFiles[i]));
 		}
 		return resultRecipes;
 	}
@@ -57,7 +58,7 @@ public class RecipeLoader {
 					e.printStackTrace();
 				}
 			}
-			else{
+			else if (listOfFolders[i].isDirectory()){
 				steps.add(recipeStepConverter(listOfFolders[i]));
 			}
 		}
@@ -102,7 +103,7 @@ public class RecipeLoader {
 		for(int i = 0; i < listOfFolders.length; i ++){
 			if(listOfFolders[i].toString().contains(".jpg")){
 				step.setBytes(extractBytesFromImage(listOfFolders[i].toString()));
-			}else{
+			}else if (listOfFolders[i].toString().contains(".txt")){
 				try {
 					step.setDescription(new Scanner(listOfFolders[i]).useDelimiter("\\Z").next());
 				} catch (FileNotFoundException e) {
