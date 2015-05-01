@@ -78,7 +78,7 @@ public abstract class AbstractDBProxy {
 			for (int i = 0; i < recipe.getIngredients().size(); i ++) {
 
 
-				String query3 = ("INSERT INTO " + DatabaseMacros.SEARCH + "VALUE(\"" + recipeID + "\", \"" + recipe.getIngredients().get(i) + "\")");
+				String query3 = ("INSERT INTO " + DatabaseMacros.SEARCH + " VALUE(\"" + recipeID + "\", \"" + recipe.getIngredients().get(i) + "\")");
 
 				stmt.executeUpdate(query3);
 			}

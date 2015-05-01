@@ -4,8 +4,8 @@ public class DatabaseMacros {
 	// JDBC driver name and database URL
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String DB_URL = "jdbc:mysql://localhost/";
-	public static final String USER = "username";
-	public static final String PASS = "password";
+	public static final String USER = "root";
+	public static final String PASS = "";
 	public static final int MAX_IMAGE = 16 * 1024;
 
 	public static final String DATABASE = "test";
