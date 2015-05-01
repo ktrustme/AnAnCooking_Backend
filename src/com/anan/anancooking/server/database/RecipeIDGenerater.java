@@ -13,11 +13,11 @@ import com.anan.anancooking.server.exception.ServerException;
  */
 public class RecipeIDGenerater {
 
-    public static String createID() {
-        String id;
-        try {
+	public static String createID() {
+		String id;
+		try {
 			id = "" + (Integer.parseInt(currentID()) + 1);
-			 return id;
+			return id;
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			return "1000";
@@ -25,16 +25,16 @@ public class RecipeIDGenerater {
 			e.printStackTrace();
 			return "1000";
 		}
-       
-    }
-    
-    
-    /* helper functions for manipulating database */
-    private static String currentID() throws ServerException{
-    	String current = null;
-    	Connection conn = null;
-    	Statement stmt = null;
-    	try{
+
+	}
+
+
+	/* helper functions for manipulating database */
+	private static String currentID() throws ServerException{
+		String current = null;
+		Connection conn = null;
+		Statement stmt = null;
+		try{
 			Class.forName(DatabaseMacros.JDBC_DRIVER);
 			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
 					DatabaseMacros.USER, DatabaseMacros.PASS);
@@ -45,18 +45,20 @@ public class RecipeIDGenerater {
 			stmt.executeQuery(sql);
 
 			String sql2 = "SELECT MAX(recipe_id) AS current from " + DatabaseMacros.RECIPE_OVERVIEW;
-			
+
 			ResultSet rs = stmt.executeQuery(sql2);
 
-			
+
 			if (rs.next())
 			{
 				current = rs.getString(1);
-				if(current == null)
+				if(current == null){
+					current = "0000"; 
 					throw new ServerException(ExceptionEnum.NO_ID_INITIALIZED);
+				}
 			}
 			if(current==null){
-				current = "0000";
+				current = "0000"; 
 			}
 		}
 		catch(Exception e){
@@ -78,7 +80,7 @@ public class RecipeIDGenerater {
 				se.printStackTrace();
 			}//end finally try
 		}//end try
-    	
-    	return current;
-    }
+
+		return current;
+	}
 }

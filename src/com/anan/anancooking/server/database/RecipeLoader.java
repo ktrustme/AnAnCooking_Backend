@@ -40,7 +40,7 @@ public class RecipeLoader {
 
 		File[] listOfFolders = file.listFiles();
 		RecipePreviewInterface recipePreview = null;
-		ArrayList<Step> steps = new ArrayList<Step>();
+		List<Step> steps = new ArrayList<Step>();
 		StepInterface step;
 		for(int i = 0; i < listOfFolders.length; i ++){
 			//System.out.println(listOfFolders[i]);

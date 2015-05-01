@@ -66,7 +66,7 @@ public class TestImage {
 			e1.printStackTrace();
 		}
 		
-		ArrayList<Step> steps = new ArrayList<Step>();
+		List<Step> steps = new ArrayList<Step>();
 		steps.add(step1);
 		steps.add(step2);
 		
@@ -86,9 +86,6 @@ public class TestImage {
 		List<String> ingredients = new ArrayList<String>();
 		ingredients.add("111");
 		List<RecipePreviewImplementation> pre = db.searchForPreview(ingredients);
-		
-		
-		
 		
 		
 		for (RecipePreviewImplementation preview: pre) {
