@@ -51,9 +51,9 @@ public abstract class AbstractDBProxy {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 
 			pstmt.setString(1, recipeID);
-			pstmt.setString(2, recipe.getDescription());
+			pstmt.setString(2, recipe.getName());
 			pstmt.setInt(3, recipe.getTime());
-			pstmt.setString(4, recipe.getCook());
+			pstmt.setString(4, recipe.getDescription());
 			//Method used to insert a stream of bytes
 			pstmt.setBytes(5, bytes);
 			pstmt.executeUpdate();
@@ -65,7 +65,6 @@ public abstract class AbstractDBProxy {
 				Step step = recipe.getSteps().get(i);
 
 				String query2 = ("INSERT INTO " + DatabaseMacros.STEP + " VALUES(?,?,?,?)");
-
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
 				pstmt2.setString(1, recipeID);
 				pstmt2.setInt(2, i);

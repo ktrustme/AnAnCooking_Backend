@@ -41,7 +41,6 @@ public class RecipeIDGenerater {
 			if (rs.next())
 			{
 				current = rs.getString(1);
-				
 			}
 			if(current==null){
 				current = "0000";
