@@ -46,7 +46,7 @@ public abstract class AbstractDBProxy {
 
 
 			/* add to recipe_overview table */
- 
+
 
 			byte[] bytes = recipe.getPreviewByteCode();
 			if(bytes.length > DatabaseMacros.MAX_IMAGE)
@@ -64,26 +64,26 @@ public abstract class AbstractDBProxy {
 			pstmt.executeUpdate();
 
 
-			
+
 			/* add to step table */
 			for (int i = 0; i < recipe.getSteps().size(); i ++) {
 				Step step = recipe.getSteps().get(i);
-				
+
 				String query2 = ("INSERT INTO " + DatabaseMacros.STEP + " VALUES(?,?,?,?)");
 				PreparedStatement pstmt2 = conn.prepareStatement(query2);
 				pstmt2.setString(1, recipeID);
 				pstmt2.setInt(2, i);
 				pstmt2.setString(3, step.getDes());
 				pstmt2.setBytes(4, step.getBytes());
-				
+
 				pstmt2.executeUpdate();
 			}
 
 			/* add to search table */
 			if(recipe.getIngredients() == null)
 				new ServerException(ExceptionEnum.NO_INGREDIENTS);
-			
-			
+
+
 			for (int i = 0; i < recipe.getIngredients().size(); i ++) {
 
 
@@ -304,7 +304,7 @@ public abstract class AbstractDBProxy {
 						while (rs2.next()) {
 							in.append(rs2.getString(1));
 							System.out.println(rs2.getString(1));
-							in.append(", ");
+							in.append("; ");
 						}
 						System.out.println("ingredients = " + in.toString());
 
@@ -342,7 +342,7 @@ public abstract class AbstractDBProxy {
 	public RecipeImplementation fetchRecipe(String recipeID) {
 
 		RecipeImplementation recipe = new RecipeImplementation();
-		
+
 		try{
 			Class.forName(DatabaseMacros.JDBC_DRIVER);
 			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
@@ -354,7 +354,7 @@ public abstract class AbstractDBProxy {
 			stmt.executeQuery(sql);
 
 			String sql2 = "SELECT * FROM " + DatabaseMacros.RECIPE_OVERVIEW + " WHERE recipe_id = '" + recipeID + "'";
-			
+
 			ResultSet rs = stmt.executeQuery(sql2);
 
 			if (rs.next())
@@ -377,17 +377,16 @@ public abstract class AbstractDBProxy {
 						/* fetch all the ingredients */
 						String sql3 = "SELECT ingredient FROM " + DatabaseMacros.SEARCH + " WHERE recipe_id = '" + recipeID + "'";
 						ResultSet rs2 = stmt2.executeQuery(sql3);
-						StringBuilder in = new StringBuilder();
+						List<String> in = new ArrayList<String>();
 
 						while (rs2.next()) {
-							in.append(rs2.getString(1));
-							System.out.println(rs2.getString(1));
-							in.append(", ");
+							in.add(rs2.getString(1));
 						}
-						System.out.println("ingredients = " + in.toString());
+
+						recipe.setIngredients(in);
 
 			}
-			
+
 			recipe.setSteps(this.getSteps(recipeID));
 
 
@@ -414,9 +413,9 @@ public abstract class AbstractDBProxy {
 		return recipe;
 	}
 
-	
+
 	public void setRating(String recipeID, int rate, int number) {
-		
+
 		try{
 			Class.forName(DatabaseMacros.JDBC_DRIVER);
 			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
@@ -436,8 +435,8 @@ public abstract class AbstractDBProxy {
 			sql2.append(", ");
 			sql2.append(number);
 			sql2.append(")");
-			
-			
+
+
 			stmt.executeQuery(sql2.toString());
 
 
@@ -463,9 +462,9 @@ public abstract class AbstractDBProxy {
 		}//end try
 	}
 
-	
+
 	public int fetchRating(String recipeID) {
-		
+
 		try{
 			Class.forName(DatabaseMacros.JDBC_DRIVER);
 			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
@@ -477,14 +476,14 @@ public abstract class AbstractDBProxy {
 			stmt.executeQuery(sql);
 
 			String sql2 = "SELECT rating FROM " + DatabaseMacros.RATING + " WHERE recipe_id = '" + recipeID + "'";
-			
+
 			ResultSet rs = stmt.executeQuery(sql2);
 
 			if (rs.next())
 			{
 				return rs.getInt(1);
 			}
-			
+
 
 
 		}
@@ -509,8 +508,8 @@ public abstract class AbstractDBProxy {
 		}//end try
 		return 0;
 	}
-	
-	
+
+
 	public int fetchNumberOfPeople(String recipeID) {
 		try{
 			Class.forName(DatabaseMacros.JDBC_DRIVER);
@@ -523,14 +522,14 @@ public abstract class AbstractDBProxy {
 			stmt.executeQuery(sql);
 
 			String sql2 = "SELECT number FROM " + DatabaseMacros.RATING + " WHERE recipe_id = '" + recipeID + "'";
-			
+
 			ResultSet rs = stmt.executeQuery(sql2);
 
 			if (rs.next())
 			{
 				return rs.getInt(1);
 			}
-			
+
 
 
 		}
@@ -555,8 +554,8 @@ public abstract class AbstractDBProxy {
 		}//end try
 		return 0;
 	}
-	
-	
+
+
 
 }
 
