@@ -6,7 +6,7 @@ public class DatabaseMacros {
 	public static final String DB_URL = "jdbc:mysql://localhost/";
 	public static final String USER = "root";
 	public static final String PASS = "";
-	public static final int MAX_IMAGE = 16 * 1024;
+	public static final int MAX_IMAGE = 1024 * 1024;
 
 	public static final String DATABASE = "test";
 	public static final String SEARCH = "search";

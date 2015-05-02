@@ -29,11 +29,11 @@ public class DatabaseInitialize {
 		}
 		s.execute("use "+DatabaseMacros.DATABASE);
 		
-		s.execute("create table if not exists "+DatabaseMacros.STEP +" (recipe_id text, step_no int(11), step_text text, step_image blob)");
+		s.execute("create table if not exists "+DatabaseMacros.STEP +" (recipe_id text, step_no int(11), step_text text, step_image mediumblob)");
 		
 		s.execute("create table if not exists "+DatabaseMacros.SEARCH + " (recipe_id text, ingredient text)");
 		
-		s.execute("create table if not exists "+DatabaseMacros.RECIPE_OVERVIEW +" (recipe_id text, recipe_name text, time int(11), cook text, image blob)");
+		s.execute("create table if not exists "+DatabaseMacros.RECIPE_OVERVIEW +" (recipe_id text, recipe_name text, time int(11), cook text, image mediumblob)");
 		//Then create the tables
 	}
 }

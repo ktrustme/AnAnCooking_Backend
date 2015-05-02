@@ -73,7 +73,7 @@ public class FetchRecipeServlet extends HttpServlet {
 		*/
 		
 		DBServer dbServer = new DBServer();
-		//dbServer.
+		
 		out.print(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
