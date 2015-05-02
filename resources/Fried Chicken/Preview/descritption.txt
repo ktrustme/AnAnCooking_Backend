@@ -1,3 +1,2 @@
-5
-Onion;Egg;White Rice;Oil
-
+40
+Chicken;Buttermilk;Flour;Garlic

@@ -12,6 +12,7 @@ public class DatabaseMacros {
 	public static final String SEARCH = "search";
 	public static final String RECIPE_OVERVIEW = "recipe_overview";
 	public static final String STEP = "step";
+	public static final String RATING = "rating";
 	
 	public static final int RECOMMEND_NO = 5;
 }

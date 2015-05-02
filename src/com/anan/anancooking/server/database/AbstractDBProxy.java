@@ -356,7 +356,6 @@ public abstract class AbstractDBProxy {
 			String sql2 = "SELECT * FROM " + DatabaseMacros.RECIPE_OVERVIEW + " WHERE recipe_id = '" + recipeID + "'";
 			
 			ResultSet rs = stmt.executeQuery(sql2);
-			byte[] fileBytes;
 
 			if (rs.next())
 			{
@@ -415,6 +414,149 @@ public abstract class AbstractDBProxy {
 		return recipe;
 	}
 
+	
+	public void setRating(String recipeID, int rate, int number) {
+		
+		try{
+			Class.forName(DatabaseMacros.JDBC_DRIVER);
+			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
+					DatabaseMacros.USER, DatabaseMacros.PASS);
+			stmt = conn.createStatement();
+
+			// use databases;
+			String sql = "use " + DatabaseMacros.DATABASE;
+			stmt.executeQuery(sql);
+
+			StringBuilder sql2 = new StringBuilder("INSERT INTO ");
+			sql2.append(DatabaseMacros.RATING);
+			sql2.append(" VALUES ('");
+			sql2.append(recipeID);
+			sql2.append("', ");
+			sql2.append(rate);
+			sql2.append(", ");
+			sql2.append(number);
+			sql2.append(")");
+			
+			
+			stmt.executeQuery(sql2.toString());
+
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		finally{
+			try{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(SQLException se2){
+			}
+			try{
+				if(conn != null)
+					conn.close();
+			}
+			catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+	}
+
+	
+	public int fetchRating(String recipeID) {
+		
+		try{
+			Class.forName(DatabaseMacros.JDBC_DRIVER);
+			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
+					DatabaseMacros.USER, DatabaseMacros.PASS);
+			stmt = conn.createStatement();
+
+			// use databases;
+			String sql = "use " + DatabaseMacros.DATABASE;
+			stmt.executeQuery(sql);
+
+			String sql2 = "SELECT rating FROM " + DatabaseMacros.RATING + " WHERE recipe_id = '" + recipeID + "'";
+			
+			ResultSet rs = stmt.executeQuery(sql2);
+
+			if (rs.next())
+			{
+				return rs.getInt(1);
+			}
+			
+
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		finally{
+			try{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(SQLException se2){
+			}
+			try{
+				if(conn != null)
+					conn.close();
+			}
+			catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		return 0;
+	}
+	
+	
+	public int fetchNumberOfPeople(String recipeID) {
+		try{
+			Class.forName(DatabaseMacros.JDBC_DRIVER);
+			conn = DriverManager.getConnection(DatabaseMacros.DB_URL, 
+					DatabaseMacros.USER, DatabaseMacros.PASS);
+			stmt = conn.createStatement();
+
+			// use databases;
+			String sql = "use " + DatabaseMacros.DATABASE;
+			stmt.executeQuery(sql);
+
+			String sql2 = "SELECT number FROM " + DatabaseMacros.RATING + " WHERE recipe_id = '" + recipeID + "'";
+			
+			ResultSet rs = stmt.executeQuery(sql2);
+
+			if (rs.next())
+			{
+				return rs.getInt(1);
+			}
+			
+
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		finally{
+			try{
+				if(stmt != null)
+					stmt.close();
+			}
+			catch(SQLException se2){
+			}
+			try{
+				if(conn != null)
+					conn.close();
+			}
+			catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		return 0;
+	}
+	
+	
 
 }
 

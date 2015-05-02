@@ -34,6 +34,9 @@ public class DatabaseInitialize {
 		s.execute("create table if not exists "+DatabaseMacros.SEARCH + " (recipe_id text, ingredient text)");
 		
 		s.execute("create table if not exists "+DatabaseMacros.RECIPE_OVERVIEW +" (recipe_id text, recipe_name text, time int(11), cook text, image mediumblob)");
-		//Then create the tables
+
+		s.execute("create table if not exists "+DatabaseMacros.RATING +" (recipe_id text, rating int(11), number int(11))");
+
+	
 	}
 }
