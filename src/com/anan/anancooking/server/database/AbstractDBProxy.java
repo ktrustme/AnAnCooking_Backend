@@ -140,7 +140,6 @@ public abstract class AbstractDBProxy {
 
 					+ sb.toString() + ")";
 			ResultSet rs = stmt.executeQuery(sql2);
-			System.out.println("fetching image");
 			/* fetch image */
 			byte[] fileBytes;
 			if (!rs.next())
@@ -405,7 +404,7 @@ public abstract class AbstractDBProxy {
 			try{
 				if(conn != null)
 					conn.close();
-			}
+			} 
 			catch(SQLException se){
 				se.printStackTrace();
 			}//end finally try
