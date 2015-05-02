@@ -75,7 +75,7 @@ public abstract class AbstractDBProxy {
 				pstmt2.setInt(2, i);
 				pstmt2.setString(3, step.getDes());
 				pstmt2.setBytes(4, step.getBytes());
-				System.out.println("Hahaha");
+				
 				pstmt2.executeUpdate();
 			}
 
@@ -369,7 +369,7 @@ public abstract class AbstractDBProxy {
 						recipe.setRecipeID(recipeID);
 						recipe.setName(rs.getString(2));
 						recipe.setTime(rs.getInt(3));
-						recipe.setCook(rs.getString(4));
+						recipe.setDescription(rs.getString(4));
 						recipe.setPreviewByteCode(rs.getBytes(5));
 
 

@@ -13,8 +13,8 @@ public class TestImage {
 
 
 	// JDBC driver name and database URL
-	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	private static final String DB_URL = "jdbc:mysql://localhost/";
+	//private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	//private static final String DB_URL = "jdbc:mysql://localhost/";
 	//private static final String USER = "username";
 	//private static final String PASS = "password";
 	private static final int MAX_IMAGE = 4096;

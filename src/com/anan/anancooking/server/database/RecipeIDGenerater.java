@@ -57,9 +57,11 @@ public class RecipeIDGenerater {
 					throw new ServerException(ExceptionEnum.NO_ID_INITIALIZED);
 				}
 			}
+			/*
 			if(current==null){
 				current = "0000"; 
 			}
+			*/
 		}
 		catch(Exception e){
 			e.printStackTrace();

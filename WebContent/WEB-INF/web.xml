@@ -51,4 +51,24 @@
 		<servlet-name>FetchRecipeServlet</servlet-name>
 		<url-pattern>/fetch_recipe</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FetchRecommendationPreviewListServlet</servlet-name>
+		<servlet-class>com.anan.anancooking.server.servlet.FetchRecommendationPreviewListServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>FetchRecommendationPreviewListServlet</servlet-name>
+		<url-pattern>/fetch_recommendation_list</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>com.anan.anancooking.server.servlet.SearchServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SearchServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>			
 </web-app>
