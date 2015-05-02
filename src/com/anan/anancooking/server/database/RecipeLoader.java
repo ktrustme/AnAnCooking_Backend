@@ -46,6 +46,7 @@ public class RecipeLoader {
 		for(int i = 0; i < listOfFolders.length; i ++){
 			//System.out.println(listOfFolders[i]);
 			if(listOfFolders[i].toString().contains("Preview")){
+				System.out.println("Preview folder");
 				recipePreview = recipePreviewConverter(listOfFolders[i]);
 				recipe.setIngredients(new ArrayList<String>(Arrays.asList(recipePreview.getIngredients().split(";"))));
 				recipe.setTime(recipePreview.getTime());
@@ -78,8 +79,9 @@ public class RecipeLoader {
 		byte[] imageBytes = null;
 		for(int i = 0; i < listOfFolders.length; i ++){
 			if(listOfFolders[i].toString().contains(".jpg")){
+				System.out.println("Preview image");
 				recipePreview.setPreviewByteCode(extractBytesFromImage(listOfFolders[i].toString()));
-			}else{
+			}else if(listOfFolders[i].toString().contains(".txt")){
 				try {
 					Scanner inputScanner = new Scanner(listOfFolders[i]);
 					recipePreview.setTime(Integer.valueOf(inputScanner.nextLine()));
@@ -145,6 +147,7 @@ public class RecipeLoader {
 		List<RecipeInterface> recipes= loadRecipesFromFile(System.getProperty("user.dir")+"/resources");
 		DBServer db = new DBServer();
 		for(RecipeInterface recipe : recipes){
+			System.out.println(recipe.getName());
 			db.addRecipe((RecipeImplementation)recipe);
 		}
 	}

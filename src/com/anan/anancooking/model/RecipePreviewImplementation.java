@@ -10,13 +10,14 @@ package com.anan.anancooking.model;
 
 
 public class RecipePreviewImplementation implements RecipePreviewInterface {
-    String recipeID = null;
+    
     String name = null;
     int time = 0;
     String ingredients = null;
     String cook = null;
     byte[] previewByteCode = null;
 
+    String recipeID = null;
     public String getRecipeID(){
     	return recipeID;
     }

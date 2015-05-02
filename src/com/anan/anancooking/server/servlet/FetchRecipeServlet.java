@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.anan.anancooking.model.RecipeImplementation;
+import com.anan.anancooking.model.RecipeInterface;
 import com.anan.anancooking.server.database.DBServer;
 import com.google.gson.Gson;
 
@@ -47,6 +48,7 @@ public class FetchRecipeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
+		/*
 		System.out.println("FetchRecipeRequest from app received");
 
 		String id = request.getParameter("id");
@@ -57,8 +59,6 @@ public class FetchRecipeServlet extends HttpServlet {
 
 		//out.println("OK...Now I think it works, and the id is: "+id);
 		//out.println("{ key1: 'value1', key2: 'value2' }");
-
-
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		Gson gson = new Gson();
@@ -66,17 +66,28 @@ public class FetchRecipeServlet extends HttpServlet {
 		List<String> ingredients = new ArrayList<String>();
 		ingredients.add("Cabbage");ingredients.add("Pork");
 		String imageName="/image.jpg";
+		*/
 		/*
 		System.out.println(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
 		*/
-		
-		DBServer dbServer = new DBServer();
-		
+		/*
 		out.print(gson.toJson((new RecipeImplementation()).setIngredients(ingredients)
 				.setTime(5)
 				.setDescription("A strange dish").setPreviewByteCode(extractBytes(imageName))));
+		*/
+		
+		PrintWriter out = response.getWriter();
+		DBServer dbServer = new DBServer();
+		Gson gson = new Gson();
+		String id = request.getParameter("id");
+
+		RecipeInterface recipe = dbServer.fetchRecipe(id);
+		if(recipe!=null)
+			out.print(gson.toJson(recipe));
+		else
+			out.print("No record...");
 	}
 
 
