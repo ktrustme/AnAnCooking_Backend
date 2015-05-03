@@ -12,7 +12,9 @@
 
 package com.anan.anancooking.server.servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -23,6 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.anan.anancooking.model.RecipeImplementation;
+import com.anan.anancooking.model.Step;
+import com.anan.anancooking.server.database.DBServer;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+//import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
+
 
 
 /**
@@ -32,45 +43,80 @@ import javax.servlet.http.HttpSession;
  *
  */
 public class TestAppServlet extends HttpServlet {
-	//String target = "showOption.jsp";
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException{
+			/*
+			String test = request.getHeader("steps");
+			
+			System.out.println("AuthType: "+request.getAuthType());
+			System.out.println("ContentType: "+request.getContentType());
+			System.out.println("Header: "+request.getHeaderNames());
+			System.out.println("test:");
+			System.out.println(test);
+			*/
+		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        String json = "";
+        if(br != null){
+        	
+            json = br.readLine();
+            JsonParser parser = new JsonParser();
+            Object object = (Object) parser.parse(json);
+            JsonObject jsonObj = (JsonObject) object;
+            
+            // parse the JSON element by element
+            Gson gson = new Gson();
+            String recipeName = gson.fromJson(jsonObj.get("recipeName"),String.class);
+            String description = gson.fromJson(jsonObj.get("description"),String.class);
+            String ingredients = gson.fromJson(jsonObj.get("ingredients"),String.class);
+            byte[] image = gson.fromJson(jsonObj.get("previewByteCode"),byte[].class);
+            int time =  Integer.parseInt(gson.fromJson(jsonObj.get("time"),String.class));
+            //ArrayList<Step> steps2 = gson.fromJson(jsonObj.get("steps"),ArrayList.class);
+            
+            ArrayList<Step> steps =(ArrayList<Step>) gson.fromJson(jsonObj.get("steps"),
+                    new TypeToken<ArrayList<Step>>() {
+                    }.getType() );
+            
+            // reconstruct the recipe
+            RecipeImplementation ri = new RecipeImplementation();
+            
+            // reconstruct the ingredient.....
+            ArrayList<String> ingred = new ArrayList<String>();
+            String[] temp = description.split("[^A-Za-z]");
+            for(int i=0;i<temp.length;i++){
+            	ingred.add(temp[i]);
+            }
+            
+            ri.setDescription(description);
+            ri.setIngredients(ingred);
+            ri.setName(recipeName);
+            ri.setPreviewByteCode(image);
+            ri.setSteps(steps);
+            
+            DBServer dbServer = new DBServer();
+            dbServer.addRecipe(ri);
+            // test all the variables 
+            /*
+            System.out.println(time);
+            System.out.println(recipeName);
+            System.out.println(description);
+            System.out.println(ingredients);
+            System.out.println(image);
+            for(int i =0;i<steps.size();i++){
+            	System.out.println(steps.get(i).getDes());
+            }
+            */
 
+        }
+		
+		
+			//this.doGet(request, response);
+	}
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 			{
-
-		System.out.println("Connection from app received");
-
-		String id = request.getParameter("id");
-
-		PrintWriter out = response.getWriter();
-		String title = "Auto Refresh Header Setting";
-		//out.println("OK...Now I think it works, and the id is: "+id);
-		System.out.println("And the id is: " + id);
-
-		out.println("{ key1: 'value1', key2: 'value2' }");
-		//String host = getServletContext().getInitParameter("serverHost");
-		//int port = Integer.valueOf(getServletContext().getInitParameter("serverPort"));
-		/*
-    	SelectCarOption selectCarOption = new SelectCarOption(host, port);
-    	System.out.println(makeModel);
-    	System.out.println(makeModel.split("\\.")[0]);
-    	Automobile auto = selectCarOption.fetchAuto(Integer.valueOf(makeModel.split("\\.")[0]));
-        request.setAttribute("Model/Make", makeModel);
-    	HttpSession session = request.getSession();
-    	session.setAttribute("auto", auto);
-    	session.setAttribute("Model/Make", auto.getMake()+" " + auto.getModel());
-    	ArrayList<ArrayList<String>> listSet = null;
-    	request.setAttribute("basePrice","" + auto.getBasePrice());
-    	listSet = auto.returnOptionList();
-        request.setAttribute("listSet", listSet);
-    	session.setAttribute("listSet", listSet);
-		 */
-		/*
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher(target);
-		dispatcher.forward(request, response);
-			}
-		 */ 
-
+		
 		}
+	
 }

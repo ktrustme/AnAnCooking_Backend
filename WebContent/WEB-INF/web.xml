@@ -28,10 +28,6 @@
 		<param-value>AnAn.com</param-value>
 	</context-param>
 
-	<servlet>
-		<servlet-name>showOptionServlet</servlet-name>
-		<servlet-class>myservlets.showOptionServlet</servlet-class>
-	</servlet>
 
 	<servlet>
 		<servlet-name>TestAppServlet</servlet-name>
