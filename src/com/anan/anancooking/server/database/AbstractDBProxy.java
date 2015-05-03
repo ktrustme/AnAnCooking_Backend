@@ -334,6 +334,10 @@ public abstract class AbstractDBProxy {
 				se.printStackTrace();
 			}//end finally try
 		}//end try
+		
+		Collections.shuffle(recipes);
+		
+		
 		return recipes;
 	}
 

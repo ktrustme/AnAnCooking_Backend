@@ -51,6 +51,7 @@ public class SearchServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String ingredients = request.getParameter("ingredients");
+		System.out.println("Ingredients is " +ingredients);
 		if(ingredients!=null){
 			System.out.println("SearchRequest from app received");
 
